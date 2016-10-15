@@ -8,6 +8,7 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 import org.osgi.service.metatype.annotations.Designate;
 
 import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketListener;
@@ -28,54 +29,45 @@ import osgi.enroute.dto.api.DTOs;
 @Designate(ocd = DevelopmentBoard1Configuration.class, factory = true)
 public class DevelopmentBoard1Impl implements Device {
 	private static final String NOT_AVAILABLE = "N/A";
-	private AtomicReference<DevelopmentBoard1DeviceDataDTO> lastKnownData = new AtomicReference<DevelopmentBoard1DeviceDataDTO>(new DevelopmentBoard1DeviceDataDTO());
-	@Reference
-	private DTOs dtoConverter;
+	private AtomicReference<DevelopmentBoard1DeviceDataDTO> lastKnownData = new AtomicReference<DevelopmentBoard1DeviceDataDTO>(
+			new DevelopmentBoard1DeviceDataDTO());
 	private DevelopmentBoard1Configuration deviceConfiguration;
 	private AusloraDataConverter myAusloraDataConverter = new AusloraDataConverter();
 	private TtnDataConverter myTtnDataConverter = new TtnDataConverter();
 
-	private DevelopmentBoard1DeviceDataDTO newData = new DevelopmentBoard1DeviceDataDTO();
-	// lambda that is subscribed to MQTT
-	private TtnMqttMessageListener subsMethod = (metadata) -> {
-		DevelopmentBoard1DeviceDataDTO newData = myTtnDataConverter.convert(metadata, dtoConverter);
-		lastKnownData.set(newData);
-	};
+	@Reference
+	private DTOs dtoConverter;
 
 	private AusloraWebsocketListener callback = (metadata) -> {
 		DevelopmentBoard1DeviceDataDTO sensorData = myAusloraDataConverter.convert(metadata, dtoConverter);
 		lastKnownData.set(sensorData);
 	};
 
+	@Reference(name = "auslorawsProtocolReference", cardinality = ReferenceCardinality.OPTIONAL, policyOption = ReferencePolicyOption.GREEDY)
+	private AusloraWebsocketProtocol auslorawsClient;
+
+	// lambda that is subscribed to MQTT
+	private TtnMqttMessageListener subsMethod = (metadata) -> {
+		DevelopmentBoard1DeviceDataDTO newData = myTtnDataConverter.convert(metadata, dtoConverter);
+		lastKnownData.set(newData);
+	};
+
 	// Bind mqttClient
-	@Reference(name = "mqttProtocolReference", cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC, unbind = "unMqttClient")
-	public void setMqttClient(TtnMqttProtocol ttnMqttClient) {
-		ttnMqttClient.subscribe(deviceConfiguration.subscriptionChannel(), subsMethod);
-	}
-
-	// Unbind mqttclient
-	public void unMqttClient(TtnMqttProtocol ttnMqttClient) {
-		ttnMqttClient.unsubscribe(deviceConfiguration.subscriptionChannel());
-	}
-
-	// bind ausloraProtocol
-	@Reference(name = "auslorawsProtocolReference", cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC, unbind = "unSetAusloraWebSocket")
-	public void setAusloraWebSocket(AusloraWebsocketProtocol auslorawsClient) {
-		String deviceChannel = String.format("app?id=%s&token=%s", deviceConfiguration.applicationId(),
-				deviceConfiguration.securityToken());
-		auslorawsClient.connect(deviceChannel, deviceConfiguration.deviceEUI(), callback);
-	}
-
-	// unbind auslora client
-	public void unSetAusloraWebSocket(AusloraWebsocketProtocol auslorawsClient) {
-		String deviceChannel = String.format("app?id=%s&token=%s", deviceConfiguration.applicationId(),
-				deviceConfiguration.securityToken());
-		auslorawsClient.disconnect(deviceChannel, deviceConfiguration.deviceEUI(), callback);
-	}
+	@Reference(name = "mqttProtocolReference", cardinality = ReferenceCardinality.OPTIONAL, policyOption = ReferencePolicyOption.GREEDY)
+	private TtnMqttProtocol ttnMqttClient;
 
 	@Activate
 	public void activate(DevelopmentBoard1Configuration conf) {
 		this.deviceConfiguration = conf;
+		if (ttnMqttClient != null) {
+			ttnMqttClient.subscribe(deviceConfiguration.subscriptionChannel(), subsMethod);
+		}
+
+		if (auslorawsClient != null) {
+			String deviceChannel = String.format("app?id=%s&token=%s", deviceConfiguration.applicationId(),
+					deviceConfiguration.securityToken());
+			auslorawsClient.connect(deviceChannel, deviceConfiguration.deviceEUI(), callback);
+		}
 	}
 
 	@GetMethod
@@ -87,6 +79,7 @@ public class DevelopmentBoard1Impl implements Device {
 	// Creates a random data if device configuration defines either of
 	// subscription or publish channel as "N/A"
 	private void createRandomData() {
+		DevelopmentBoard1DeviceDataDTO newData = new DevelopmentBoard1DeviceDataDTO();
 		if (NOT_AVAILABLE.equals(deviceConfiguration.subscriptionChannel())
 				|| NOT_AVAILABLE.equals(deviceConfiguration.publishChannel())) {
 			newData.temp = (int) (120 * Math.random() - 20);
