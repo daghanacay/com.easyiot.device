@@ -1,6 +1,5 @@
 package com.easyiot.LT100H.device.provider.converter;
 
-import java.util.Base64;
 import java.util.stream.Collectors;
 
 import javax.xml.bind.DatatypeConverter;
