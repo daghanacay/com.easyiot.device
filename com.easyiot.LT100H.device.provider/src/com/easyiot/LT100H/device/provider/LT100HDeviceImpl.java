@@ -77,6 +77,10 @@ public class LT100HDeviceImpl implements Device, AusloraWebsocketListener {
 		if (myWebsocketProtocol != null) {
 			myWebsocketProtocol.sendMessage(deviceConfiguration.applicationId(), deviceConfiguration.deviceEUI(), data);
 		}
+
+		if (ttnMqttClient != null) {
+			ttnMqttClient.publish(deviceConfiguration.subscriptionChannel(), data);
+		}
 	}
 
 	@Override
