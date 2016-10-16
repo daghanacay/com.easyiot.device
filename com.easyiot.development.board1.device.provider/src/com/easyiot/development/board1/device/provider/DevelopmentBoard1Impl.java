@@ -12,7 +12,9 @@ import org.osgi.service.metatype.annotations.Designate;
 
 import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketListener;
 import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketProtocol;
+import com.easyiot.auslora_websocket.protocol.api.dto.AusloraMetadataDTO;
 import com.easyiot.base.api.Device;
+import com.easyiot.base.api.Device.PostMethod;
 import com.easyiot.development.board1.device.api.dto.DevelopmentBoard1DeviceDataDTO;
 import com.easyiot.development.board1.device.capability.DevelopmentBoard1DeviceCapability.ProvideDevelopmentBoard1Device_v1_0_0;
 import com.easyiot.development.board1.device.provider.configuration.DevelopmentBoard1Configuration;
@@ -26,24 +28,28 @@ import osgi.enroute.dto.api.DTOs;
 @ProvideDevelopmentBoard1Device_v1_0_0
 @Component(name = "com.easyiot.development.board1.device", configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = DevelopmentBoard1Configuration.class, factory = true)
-public class DevelopmentBoard1Impl implements Device {
+public class DevelopmentBoard1Impl implements Device, AusloraWebsocketListener {
 	private static final String NOT_AVAILABLE = "N/A";
 	private AtomicReference<DevelopmentBoard1DeviceDataDTO> lastKnownData = new AtomicReference<DevelopmentBoard1DeviceDataDTO>(
 			new DevelopmentBoard1DeviceDataDTO());
 	private DevelopmentBoard1Configuration deviceConfiguration;
 	private AusloraDataConverter myAusloraDataConverter = new AusloraDataConverter();
 	private TtnDataConverter myTtnDataConverter = new TtnDataConverter();
+	private AusloraWebsocketProtocol myWebsocketProtocol;
 
 	@Reference
 	private DTOs dtoConverter;
 
-	private AusloraWebsocketListener callback = (metadata) -> {
-		DevelopmentBoard1DeviceDataDTO sensorData = myAusloraDataConverter.convert(metadata, dtoConverter);
+	@Override
+	public void processMessage(AusloraMetadataDTO ausloraData) {
+		DevelopmentBoard1DeviceDataDTO sensorData = myAusloraDataConverter.convert(ausloraData, dtoConverter);
 		lastKnownData.set(sensorData);
-	};
+	}
 
-	@Reference(name = "auslorawsProtocolReference", cardinality = ReferenceCardinality.OPTIONAL, policyOption = ReferencePolicyOption.GREEDY)
-	private AusloraWebsocketProtocol auslorawsClient;
+	@Override
+	public void setProtocolHandler(AusloraWebsocketProtocol protocolInstance) {
+		this.myWebsocketProtocol = protocolInstance;
+	}
 
 	// lambda that is subscribed to MQTT
 	private TtnMqttMessageListener subsMethod = (metadata) -> {
@@ -61,18 +67,19 @@ public class DevelopmentBoard1Impl implements Device {
 		if (ttnMqttClient != null) {
 			ttnMqttClient.subscribe(deviceConfiguration.subscriptionChannel(), subsMethod);
 		}
-
-		if (auslorawsClient != null) {
-			String deviceChannel = String.format("app?id=%s&token=%s", deviceConfiguration.applicationId(),
-					deviceConfiguration.securityToken());
-			auslorawsClient.connect(deviceChannel, deviceConfiguration.deviceEUI(), callback);
-		}
 	}
 
 	@GetMethod
 	public DevelopmentBoard1DeviceDataDTO getData() {
 		createRandomData();
 		return lastKnownData.get();
+	}
+
+	@PostMethod
+	public void sendData(String data) {
+		if (myWebsocketProtocol != null) {
+			myWebsocketProtocol.sendMessage(deviceConfiguration.applicationId(), deviceConfiguration.deviceEUI(), data);
+		}
 	}
 
 	// Creates a random data if device configuration defines either of

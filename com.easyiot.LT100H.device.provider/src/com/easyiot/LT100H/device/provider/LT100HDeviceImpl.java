@@ -16,6 +16,7 @@ import com.easyiot.LT100H.device.provider.converter.AusloraDataConverter;
 import com.easyiot.LT100H.device.provider.converter.TtnDataConverter;
 import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketListener;
 import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketProtocol;
+import com.easyiot.auslora_websocket.protocol.api.dto.AusloraMetadataDTO;
 import com.easyiot.base.api.Device;
 import com.easyiot.ttn_mqtt.protocol.api.TtnMqttMessageListener;
 import com.easyiot.ttn_mqtt.protocol.api.TtnMqttProtocol;
@@ -25,31 +26,34 @@ import osgi.enroute.dto.api.DTOs;
 @ProvideLT100HDevice_v1_0_0
 @Component(name = "com.easyiot.LT100H.device")
 @Designate(ocd = LT100HDeviceConfiguration.class, factory = true)
-public class LT100HDeviceImpl implements Device {
+public class LT100HDeviceImpl implements Device, AusloraWebsocketListener {
 	private LT100HDeviceConfiguration deviceConfiguration;
 	private AtomicReference<LT100HSensorDataDTO> lastKnownData = new AtomicReference<LT100HSensorDataDTO>(
 			new LT100HSensorDataDTO());
 	private AusloraDataConverter myAusloraDataConverter = new AusloraDataConverter();
 	private TtnDataConverter myTtnDataConverter = new TtnDataConverter();
+	private AusloraWebsocketProtocol myWebsocketProtocol;
 
 	@Reference
 	private DTOs dtoConverter;
 
-	private AusloraWebsocketListener callback = (metadata) -> {
-		LT100HSensorDataDTO sensorData = myAusloraDataConverter.convert(metadata, dtoConverter);
+	@Override
+	public void processMessage(AusloraMetadataDTO ausloraData) {
+		LT100HSensorDataDTO sensorData = myAusloraDataConverter.convert(ausloraData, dtoConverter);
 		lastKnownData.set(sensorData);
-	};
+	}
 
-	// bind ausloraProtocol
-	@Reference(name = "auslorawsProtocolReference", cardinality = ReferenceCardinality.OPTIONAL, policyOption = ReferencePolicyOption.GREEDY)
-	private AusloraWebsocketProtocol auslorawsClient;
+	@Override
+	public void setProtocolHandler(AusloraWebsocketProtocol protocolInstance) {
+		this.myWebsocketProtocol = protocolInstance;
+	}
 
 	// lambda that is subscribed to MQTT
 	private TtnMqttMessageListener subsMethod = (metadata) -> {
 		LT100HSensorDataDTO newData = myTtnDataConverter.convert(metadata, dtoConverter);
 		lastKnownData.set(newData);
 	};
-	
+
 	// Bind mqttClient
 	@Reference(name = "mqttProtocolReference", cardinality = ReferenceCardinality.OPTIONAL, policyOption = ReferencePolicyOption.GREEDY)
 	private TtnMqttProtocol ttnMqttClient;
@@ -61,17 +65,18 @@ public class LT100HDeviceImpl implements Device {
 		if (ttnMqttClient != null) {
 			ttnMqttClient.subscribe(deviceConfiguration.subscriptionChannel(), subsMethod);
 		}
-
-		if (auslorawsClient != null) {
-			String deviceChannel = String.format("app?id=%s&token=%s", deviceConfiguration.applicationId(),
-					deviceConfiguration.securityToken());
-			auslorawsClient.connect(deviceChannel, deviceConfiguration.deviceEUI(), callback);
-		}
 	}
 
 	@GetMethod
 	public LT100HSensorDataDTO getData() {
 		return lastKnownData.get();
+	}
+
+	@PostMethod
+	public void sendData(String data) {
+		if (myWebsocketProtocol != null) {
+			myWebsocketProtocol.sendMessage(deviceConfiguration.applicationId(), deviceConfiguration.deviceEUI(), data);
+		}
 	}
 
 	@Override
