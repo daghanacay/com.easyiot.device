@@ -14,7 +14,6 @@ import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketListener;
 import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketProtocol;
 import com.easyiot.auslora_websocket.protocol.api.dto.AusloraMetadataDTO;
 import com.easyiot.base.api.Device;
-import com.easyiot.base.api.Device.PostMethod;
 import com.easyiot.development.board1.device.api.dto.DevelopmentBoard1DeviceDataDTO;
 import com.easyiot.development.board1.device.capability.DevelopmentBoard1DeviceCapability.ProvideDevelopmentBoard1Device_v1_0_0;
 import com.easyiot.development.board1.device.provider.configuration.DevelopmentBoard1Configuration;
@@ -43,6 +42,8 @@ public class DevelopmentBoard1Impl implements Device, AusloraWebsocketListener {
 	@Override
 	public void processMessage(AusloraMetadataDTO ausloraData) {
 		DevelopmentBoard1DeviceDataDTO sensorData = myAusloraDataConverter.convert(ausloraData, dtoConverter);
+		System.out.println(String.format("Network name: %s, Gateway EUI: %s Device EUI: %s", "Auslora",
+				ausloraData.gwts.get(0).gweui, deviceConfiguration.deviceEUI()));
 		lastKnownData.set(sensorData);
 	}
 
@@ -54,6 +55,8 @@ public class DevelopmentBoard1Impl implements Device, AusloraWebsocketListener {
 	// lambda that is subscribed to MQTT
 	private TtnMqttMessageListener subsMethod = (metadata) -> {
 		DevelopmentBoard1DeviceDataDTO newData = myTtnDataConverter.convert(metadata, dtoConverter);
+		System.out.println(String.format("Network name: %s, Gateway EUI: %s Device EUI: %s", "TTN",
+				metadata.gwts.get(0).gateway_eui, deviceConfiguration.deviceEUI()));
 		lastKnownData.set(newData);
 	};
 

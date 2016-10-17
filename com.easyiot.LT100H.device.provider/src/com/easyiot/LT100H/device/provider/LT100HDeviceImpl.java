@@ -40,6 +40,8 @@ public class LT100HDeviceImpl implements Device, AusloraWebsocketListener {
 	@Override
 	public void processMessage(AusloraMetadataDTO ausloraData) {
 		LT100HSensorDataDTO sensorData = myAusloraDataConverter.convert(ausloraData, dtoConverter);
+		System.out.println(String.format("Network name: %s, Gateway EUI: %s Device EUI: %s", "Auslora",
+				ausloraData.gwts.get(0).gweui, deviceConfiguration.deviceEUI()));
 		lastKnownData.set(sensorData);
 	}
 
@@ -51,6 +53,8 @@ public class LT100HDeviceImpl implements Device, AusloraWebsocketListener {
 	// lambda that is subscribed to MQTT
 	private TtnMqttMessageListener subsMethod = (metadata) -> {
 		LT100HSensorDataDTO newData = myTtnDataConverter.convert(metadata, dtoConverter);
+		System.out.println(String.format("Network name: %s, Gateway EUI: %s Device EUI: %s", "TTN",
+				metadata.gwts.get(0).gateway_eui, deviceConfiguration.deviceEUI()));
 		lastKnownData.set(newData);
 	};
 
