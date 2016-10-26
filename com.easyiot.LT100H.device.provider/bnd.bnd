@@ -1,6 +1,8 @@
 Bundle-Version: 1.0.1.${tstamp}
 Bundle-Description: 				\
 	Implements the auslora device 
+	
+Bundle-Category: EasyIoT
 
 Private-Package: \
 	com.easyiot.LT100H.device.provider,\

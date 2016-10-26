@@ -1,6 +1,8 @@
 Bundle-Version:					1.0.0.${tstamp}
 Bundle-Description: 				\
 	Provides an implementation to access lora devices
+	
+Bundle-Category: EasyIoT
 
 Private-Package: \
 	com.easyiot.development.board1.device.provider,\

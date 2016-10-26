@@ -1,6 +1,8 @@
 Bundle-Version:					1.0.0.${tstamp}
 Bundle-Description: 				\
 	Provides a device implemenation for 3 color pin driven LEDs. 
+	
+Bundle-Category: EasyIoT
 
 Private-Package: \
 	com.easyiot.color3led.device.provider,\

@@ -6,6 +6,8 @@
 Bundle-Version:					1.0.0.${tstamp}
 Bundle-Description: 				\
 	A simple bluetooth device.
+	
+Bundle-Category: EasyIoT
 
 Private-Package: \
 	com.easyiot.bluetooth.device.provider,\

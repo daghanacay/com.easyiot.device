@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1476701029000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1477476451000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.LT100H.device.api"/>
@@ -49,34 +49,34 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.LT100H.device.provider"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.1.201610171042"/>
+      <attribute name="version" type="Version" value="1.0.1.201610261007"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="678f6243b7f525ca0cfbbc8770e64ead0ffc60123f254d39a91cea9c925f5705"/>
+      <attribute name="osgi.content" value="61f2e86c4c217054a35005b8f22f76cb0c90e8454d714d6c0bc77cedad73602d"/>
       <attribute name="url" value="com.easyiot.LT100H.device.provider/com.easyiot.LT100H.device.provider-1.0.1.jar"/>
-      <attribute name="size" type="Long" value="21966"/>
+      <attribute name="size" type="Long" value="21982"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.LT100H.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.1.201610171042"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1.201610261007"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.LT100H.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.1.201610171042"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1.201610261007"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.LT100H.device.api.dto"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.LT100H.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.1.201610171042"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1.201610261007"/>
       <directive name="uses" value="org.osgi.dto"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.auslora.device.api.dto.sensor"/>
       <attribute name="version" type="Version" value="1.0.1"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.LT100H.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.1.201610171042"/>
+      <attribute name="bundle-version" type="Version" value="1.0.1.201610261007"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketListener,com.easyiot.base.api.Device"/>
@@ -204,27 +204,27 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.bluetooth.device.provider"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201609081131"/>
+      <attribute name="version" type="Version" value="1.0.0.201610261006"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="a3b4725b1b6c5dde53391a9e9f379638aebd66bb76818b4010feba0b6e6a5571"/>
+      <attribute name="osgi.content" value="6335205522e87961135f7bd0f30384963cb855e94c7de3067c0ba0b9abbf565f"/>
       <attribute name="url" value="com.easyiot.bluetooth.device.provider/com.easyiot.bluetooth.device.provider-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="16142"/>
+      <attribute name="size" type="Long" value="16154"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.bluetooth.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081131"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610261006"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.bluetooth.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081131"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610261006"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.base.api"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.bluetooth.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609081131"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610261006"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.base.api.Device"/>
@@ -312,27 +312,27 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.color3led.device.provider"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201609151114"/>
+      <attribute name="version" type="Version" value="1.0.0.201610261006"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="18b388791927aa9872d919d0b0aaa3545b8edf0c5596af610a081c803a49b9ec"/>
+      <attribute name="osgi.content" value="1f0cf34c88a100932750cd1dc4e9393d6fe069fbfceb0d6869afbd73f3660fd5"/>
       <attribute name="url" value="com.easyiot.color3led.device.provider/com.easyiot.color3led.device.provider-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="11201"/>
+      <attribute name="size" type="Long" value="11214"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.color3led.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609151114"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610261006"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.color3led.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609151114"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610261006"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.color3led.device.api.dto"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.color3led.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201609151114"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610261006"/>
       <directive name="uses" value="org.osgi.dto"/>
     </capability>
     <capability namespace="osgi.service">
@@ -434,27 +434,27 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.development.board1.device.provider"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201610171040"/>
+      <attribute name="version" type="Version" value="1.0.0.201610261006"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="4a75689485f6f6d41d58d737a935b92e173f4c7e4828523fe5679f75b1521bd8"/>
+      <attribute name="osgi.content" value="71d10e3247772177e651f383fb11604bc17cc1ebd0c63a9637e7e08d90e63087"/>
       <attribute name="url" value="com.easyiot.development.board1.device.provider/com.easyiot.development.board1.device.provider-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="21847"/>
+      <attribute name="size" type="Long" value="21861"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.development.board1.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610171040"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610261006"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.development.board1.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610171040"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610261006"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.development.board1.device.api.dto"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.development.board1.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201610171040"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201610261006"/>
       <directive name="uses" value="org.osgi.dto"/>
     </capability>
     <capability namespace="osgi.service">
