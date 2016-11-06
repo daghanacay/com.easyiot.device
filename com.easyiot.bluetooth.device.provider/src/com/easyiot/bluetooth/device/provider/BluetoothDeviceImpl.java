@@ -7,6 +7,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 
 import com.easyiot.base.api.Device;
+import com.easyiot.bluetooth.device.api.capability.BluetoothDeviceCapability.ProvideBluetoothDevice_v1_0_0;
 import com.easyiot.bluetooth.device.api.dto.SensorData;
 import com.easyiot.bluetooth.device.configuration.BluetoothDeviceConfiguration;
 import com.easyiot.bluetooth.protocol.api.BluetoothProtocol;
@@ -14,7 +15,7 @@ import com.easyiot.bluetooth.protocol.api.BluetoothProtocol;
 /**
  * A sample implementation of a Bluetooth device.
  */
-
+@ProvideBluetoothDevice_v1_0_0
 @Designate(ocd = BluetoothDeviceConfiguration.class, factory = true)
 @Component(name = "com.easyiot.bluetooth.device", configurationPolicy = ConfigurationPolicy.REQUIRE)
 public class BluetoothDeviceImpl implements Device {
