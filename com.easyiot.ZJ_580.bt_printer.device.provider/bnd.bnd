@@ -35,4 +35,7 @@ Bundle-License: \
 	https://opensource.org/licenses/Apache-2.0; \
 	link=http://www.apache.org/licenses/LICENSE-2.0; \
 	description="Apache Software License 2.0"
-Export-Package: com.easyiot.base.api
+Export-Package: \
+	com.easyiot.base.api,\
+	com.easyiot.bluetooth.protocol.api,\
+	com.easyiot.com.easyiot.ZJ_580.bt_printer.device.api.dto

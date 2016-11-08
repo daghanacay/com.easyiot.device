@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<repository increment="1478599335000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
+<repository increment="1478601035000" name="Release" xmlns="http://www.osgi.org/xmlns/repository/v1.0.0">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.LT100H.device.api"/>
@@ -159,34 +159,34 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.ZJ_580.bt_printer.device.api"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201611071023"/>
+      <attribute name="version" type="Version" value="1.0.0.201611081030"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="339f2777caaed16c3e3cb9d44cf966673a12d4b18572f94123aef19311008fe8"/>
+      <attribute name="osgi.content" value="0001bd70399fcb5bcd109be4a9b01c9b55353980136fed79aa66798e049bfa99"/>
       <attribute name="url" value="com.easyiot.ZJ_580.bt_printer.device.api/com.easyiot.ZJ_580.bt_printer.device.api-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="11161"/>
+      <attribute name="size" type="Long" value="11157"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.ZJ_580.bt_printer.device.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201611071023"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201611081030"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.ZJ_580.bt_printer.device.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201611071023"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201611081030"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.com.easyiot.ZJ_580.bt_printer.device.api.dto"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.ZJ_580.bt_printer.device.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201611071023"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201611081030"/>
       <directive name="uses" value="org.osgi.dto"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.ZJ_580.bt_printer.device.api.capability"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.ZJ_580.bt_printer.device.api"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201611071023"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201611081030"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.dto)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
@@ -204,27 +204,41 @@
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="com.easyiot.ZJ_580.bt_printer.device.provider"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" type="Version" value="1.0.0.201611071017"/>
+      <attribute name="version" type="Version" value="1.0.0.201611081030"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="osgi.content" value="9f2706edcbd204f82049fe0d33da34b16371dc95a9187b5f61375bee12fc4b09"/>
+      <attribute name="osgi.content" value="4e9d967a41fb8010bb411d0fa99a37375d1ccb4fbe5f66511f63329bcb7488ea"/>
       <attribute name="url" value="com.easyiot.ZJ_580.bt_printer.device.provider/com.easyiot.ZJ_580.bt_printer.device.provider-1.0.0.jar"/>
-      <attribute name="size" type="Long" value="16892"/>
+      <attribute name="size" type="Long" value="27277"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
       <attribute name="osgi.wiring.bundle" value="com.easyiot.ZJ_580.bt_printer.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201611071017"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201611081030"/>
     </capability>
     <capability namespace="osgi.wiring.host">
       <attribute name="osgi.wiring.host" value="com.easyiot.ZJ_580.bt_printer.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201611071017"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201611081030"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="osgi.wiring.package" value="com.easyiot.base.api"/>
       <attribute name="version" type="Version" value="1.0.0"/>
       <attribute name="bundle-symbolic-name" value="com.easyiot.ZJ_580.bt_printer.device.provider"/>
-      <attribute name="bundle-version" type="Version" value="1.0.0.201611071017"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201611081030"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.easyiot.bluetooth.protocol.api"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.easyiot.ZJ_580.bt_printer.device.provider"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201611081030"/>
+      <directive name="uses" value="com.easyiot.base.api"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <attribute name="osgi.wiring.package" value="com.easyiot.com.easyiot.ZJ_580.bt_printer.device.api.dto"/>
+      <attribute name="version" type="Version" value="1.0.0"/>
+      <attribute name="bundle-symbolic-name" value="com.easyiot.ZJ_580.bt_printer.device.provider"/>
+      <attribute name="bundle-version" type="Version" value="1.0.0.201611081030"/>
+      <directive name="uses" value="org.osgi.dto"/>
     </capability>
     <capability namespace="osgi.service">
       <attribute name="objectClass" type="List&lt;String&gt;" value="com.easyiot.base.api.Device"/>
@@ -248,12 +262,19 @@
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=com.easyiot.com.easyiot.ZJ_580.bt_printer.device.api.dto)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
     </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.dto)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
     <requirement namespace="osgi.extender">
       <directive name="filter" value="(&amp;(osgi.extender=osgi.component)(version&gt;=1.3.0)(!(version&gt;=2.0.0)))"/>
     </requirement>
     <requirement namespace="osgi.service">
       <directive name="filter" value="(objectClass=com.easyiot.bluetooth.protocol.api.BluetoothProtocol)"/>
       <directive name="effective" value="active"/>
+    </requirement>
+    <requirement namespace="com.easyiot">
+      <attribute name="versionStr" value="1.0.0"/>
+      <directive name="filter" value="(&amp;(com.easyiot=bluetooth_device)(&amp;(version&gt;=1.0.0)(!(version&gt;=2.0.0))))"/>
     </requirement>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=1.8))"/>

@@ -6,7 +6,7 @@ ${Bundle-Description}
 
 ## Configuration
 
-	Pid: com.easyiot.bluetooth.device
+	Pid: com.easyiot.ZJ_580.device
 	
 	Field					Type				Description
 		

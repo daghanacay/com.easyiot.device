@@ -11,6 +11,6 @@ import com.easyiot.ZJ_580.bt_printer.device.api.capability.BluetoothDeviceCapabi
  *
  */
 @RequireZJ_580Device
-public class SensorData extends DTO {
+public class ZJ_580Data extends DTO {
 	public String message = "default message";
 }

@@ -4,7 +4,7 @@ import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 @ObjectClassDefinition(name = "Bluetooth enabled device configuration")
-public @interface BluetoothDeviceConfiguration {
+public @interface ZJ_580DeviceConfiguration {
 
 	/**
 	 * Id of the device instance
