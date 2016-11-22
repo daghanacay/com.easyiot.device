@@ -5,6 +5,5 @@ encoding/.project=UTF-8
 encoding//.settings/org.eclipse.jdt.core.prefs=UTF-8
 encoding//src/com/easyiot/ZJ_580/bt_printer/device/provider/ZJ_580DeviceImpl.java=UTF-8
 encoding//test/.gitignore=UTF-8
-encoding//test/com/easyiot/bluetooth/device/provider/DeviceImplTest.java=UTF-8
 encoding/bnd.bnd=UTF-8
 encoding/readme.md=UTF-8

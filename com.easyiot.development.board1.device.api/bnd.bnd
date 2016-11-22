@@ -4,7 +4,7 @@
 
 Bundle-Version:1.0.0.${tstamp}
 Bundle-Description: 				\
-	Provides DTOs for lora devices. 
+	Provides DTOs for board 1 devices. Development board.
 
 	
 Export-Package: \

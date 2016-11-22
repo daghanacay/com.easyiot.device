@@ -1,6 +1,6 @@
 Bundle-Version:1.0.0.${tstamp}
 Bundle-Description: 				\
-	Device for auslora server. 
+	Device for GPS enabled device. 
 
 	
 Export-Package: \
