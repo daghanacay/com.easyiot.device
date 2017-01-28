@@ -11,14 +11,14 @@ import aQute.bnd.annotation.headers.RequireCapability;
 public interface DevelopmentBoard1DeviceCapability {
 	public static final String DEVELOPMENT_BOARD1_DEVICE = "DevelopmentBoard1_device";
 
-	@ProvideCapability(ns = EasyiotNamespace.NS, name = DEVELOPMENT_BOARD1_DEVICE, version = "1.0.0")
+	@ProvideCapability(ns = EasyiotNamespace.NS, name = DEVELOPMENT_BOARD1_DEVICE)
 	@Retention(RetentionPolicy.CLASS)
-	public @interface ProvideDevelopmentBoard1Device_v1_0_0 {
-
+	public @interface ProvideDevelopmentBoard1Device {
+		String version() default "1.0.0";
 	}
 
 	@RequireCapability(ns = EasyiotNamespace.NS, filter = "(&(" + EasyiotNamespace.NS + "=" + DEVELOPMENT_BOARD1_DEVICE
-			+ ")${frange;${versionStr}})")
+			+ ")${frange;${version}})")
 	@Retention(RetentionPolicy.CLASS)
 	public @interface RequireDevelopmentBoard1Device {
 		/**
@@ -26,7 +26,7 @@ public interface DevelopmentBoard1DeviceCapability {
 		 * 
 		 * @return
 		 */
-		String versionStr() default "1.0.0";
+		String version() default "1.0.0";
 	}
 
 }

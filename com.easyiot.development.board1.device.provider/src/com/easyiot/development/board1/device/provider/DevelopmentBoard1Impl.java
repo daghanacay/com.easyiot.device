@@ -15,7 +15,7 @@ import com.easyiot.auslora_websocket.protocol.api.AusloraWebsocketProtocol;
 import com.easyiot.auslora_websocket.protocol.api.dto.AusloraMetadataDTO;
 import com.easyiot.base.api.Device;
 import com.easyiot.development.board1.device.api.dto.DevelopmentBoard1DeviceDataDTO;
-import com.easyiot.development.board1.device.capability.DevelopmentBoard1DeviceCapability.ProvideDevelopmentBoard1Device_v1_0_0;
+import com.easyiot.development.board1.device.capability.DevelopmentBoard1DeviceCapability.ProvideDevelopmentBoard1Device;
 import com.easyiot.development.board1.device.provider.configuration.DevelopmentBoard1Configuration;
 import com.easyiot.development.board1.device.provider.converter.AusloraDataConverter;
 import com.easyiot.development.board1.device.provider.converter.TtnDataConverter;
@@ -24,7 +24,7 @@ import com.easyiot.ttn_mqtt.protocol.api.TtnMqttProtocol;
 
 import osgi.enroute.dto.api.DTOs;
 
-@ProvideDevelopmentBoard1Device_v1_0_0
+@ProvideDevelopmentBoard1Device(version = "1.0.0")
 @Component(name = "com.easyiot.development.board1.device", configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = DevelopmentBoard1Configuration.class, factory = true)
 public class DevelopmentBoard1Impl implements Device, AusloraWebsocketListener {

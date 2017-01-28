@@ -3,10 +3,8 @@ package com.easyiot.LT100H.device.api.dto;
 import org.osgi.dto.DTO;
 
 import com.easyiot.LT100H.device.api.capability.LT100HDeviceCapability.RequireLT100HDevice;
-import com.easyiot.LT100H.device.api.dto.LT100HMetaDataDTO;
-import com.easyiot.LT100H.device.api.dto.LT100HSensorDataConstants;
 
-@RequireLT100HDevice(versionStr="1.0.0")
+@RequireLT100HDevice(version = "1.0.0")
 public class LT100HSensorDataDTO extends DTO {
 
 	// Should be one of device type constants

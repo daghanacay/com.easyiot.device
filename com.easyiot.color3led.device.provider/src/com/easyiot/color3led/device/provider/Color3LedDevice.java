@@ -7,7 +7,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 
 import com.easyiot.base.api.Device;
-import com.easyiot.color3led.device.api.capability.Color3LedCapability.ProvideColor3LedDevice_v1_0_0;
+import com.easyiot.color3led.device.api.capability.Color3LedCapability.ProvideColor3LedDevice;
 import com.easyiot.color3led.device.api.dto.ColorDto;
 import com.easyiot.color3led.device.api.dto.ColorDtoFactory;
 import com.easyiot.color3led.device.configuration.Color3LedConfiguration;
@@ -22,7 +22,7 @@ import com.easyiot.gpio.protocol.api.PinTypeEnum;
  * @author daghan
  *
  */
-@ProvideColor3LedDevice_v1_0_0
+@ProvideColor3LedDevice(version = "1.0.0")
 @Component(name = "com.easyiot.color3led.device", configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = Color3LedConfiguration.class, factory = true)
 public class Color3LedDevice implements Device {

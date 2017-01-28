@@ -9,7 +9,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicyOption;
 import org.osgi.service.metatype.annotations.Designate;
 
-import com.easyiot.LT100H.device.api.capability.LT100HDeviceCapability.ProvideLT100HDevice_v1_0_0;
+import com.easyiot.LT100H.device.api.capability.LT100HDeviceCapability.ProvideLT100HDevice;
 import com.easyiot.LT100H.device.api.dto.LT100HSensorDataDTO;
 import com.easyiot.LT100H.device.provider.configuration.LT100HDeviceConfiguration;
 import com.easyiot.LT100H.device.provider.converter.AusloraDataConverter;
@@ -23,7 +23,7 @@ import com.easyiot.ttn_mqtt.protocol.api.TtnMqttProtocol;
 
 import osgi.enroute.dto.api.DTOs;
 
-@ProvideLT100HDevice_v1_0_0
+@ProvideLT100HDevice(version = "1.0.0")
 @Component(name = "com.easyiot.LT100H.device")
 @Designate(ocd = LT100HDeviceConfiguration.class, factory = true)
 public class LT100HDeviceImpl implements Device, AusloraWebsocketListener {

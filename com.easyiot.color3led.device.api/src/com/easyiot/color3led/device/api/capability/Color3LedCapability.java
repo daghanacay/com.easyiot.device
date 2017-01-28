@@ -11,14 +11,14 @@ import aQute.bnd.annotation.headers.RequireCapability;
 public interface Color3LedCapability {
 	public static final String COLOR_3_LED_DEVICE = "color_3_led_device";
 
-	@ProvideCapability(ns = EasyiotNamespace.NS, name = COLOR_3_LED_DEVICE, version = "1.0.0")
+	@ProvideCapability(ns = EasyiotNamespace.NS, name = COLOR_3_LED_DEVICE)
 	@Retention(RetentionPolicy.CLASS)
-	public @interface ProvideColor3LedDevice_v1_0_0 {
-
+	public @interface ProvideColor3LedDevice {
+		String version() default "1.0.0";
 	}
 
 	@RequireCapability(ns = EasyiotNamespace.NS, filter = "(&(" + EasyiotNamespace.NS + "=" + COLOR_3_LED_DEVICE
-			+ ")${frange;${versionStr}})")
+			+ ")${frange;${version}})")
 	@Retention(RetentionPolicy.CLASS)
 	public @interface RequireColor3LedDevice {
 		/**
@@ -26,6 +26,6 @@ public interface Color3LedCapability {
 		 * 
 		 * @return
 		 */
-		String versionStr() default "1.0.0";
+		String version() default "1.0.0";
 	}
 }

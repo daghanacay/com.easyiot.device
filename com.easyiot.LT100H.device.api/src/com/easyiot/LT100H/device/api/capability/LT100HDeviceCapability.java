@@ -12,14 +12,14 @@ public interface LT100HDeviceCapability {
 
 	public static final String LT100H_DEVICE = "lth100h_device";
 
-	@ProvideCapability(ns = EasyiotNamespace.NS, name = LT100H_DEVICE, version = "1.0.0")
+	@ProvideCapability(ns = EasyiotNamespace.NS, name = LT100H_DEVICE)
 	@Retention(RetentionPolicy.CLASS)
-	public @interface ProvideLT100HDevice_v1_0_0 {
-
+	public @interface ProvideLT100HDevice {
+		String version() default "1.0.0";
 	}
 
 	@RequireCapability(ns = EasyiotNamespace.NS, filter = "(&(" + EasyiotNamespace.NS + "=" + LT100H_DEVICE
-			+ ")${frange;${versionStr}})")
+			+ ")${frange;${version}})")
 	@Retention(RetentionPolicy.CLASS)
 	public @interface RequireLT100HDevice {
 		/**
@@ -27,7 +27,7 @@ public interface LT100HDeviceCapability {
 		 * 
 		 * @return
 		 */
-		String versionStr() default "1.0.0";
+		String version() default "1.0.0";
 	}
 
 }

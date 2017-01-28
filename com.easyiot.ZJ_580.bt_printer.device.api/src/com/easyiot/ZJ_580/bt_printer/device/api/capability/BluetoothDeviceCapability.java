@@ -12,14 +12,14 @@ public interface BluetoothDeviceCapability {
 
 	public static final String BLUETOOT_DEVICE = "bluetooth_device";
 
-	@ProvideCapability(ns = EasyiotNamespace.NS, name = BLUETOOT_DEVICE, version = "1.0.0")
+	@ProvideCapability(ns = EasyiotNamespace.NS, name = BLUETOOT_DEVICE)
 	@Retention(RetentionPolicy.CLASS)
-	public @interface ProvideZJ_580Device_v1_0_0 {
-
+	public @interface ProvideZJ_580Device {
+		String version() default "1.0.0";
 	}
 
 	@RequireCapability(ns = EasyiotNamespace.NS, filter = "(&(" + EasyiotNamespace.NS + "=" + BLUETOOT_DEVICE
-			+ ")${frange;${versionStr}})")
+			+ ")${frange;${version}})")
 	@Retention(RetentionPolicy.CLASS)
 	public @interface RequireZJ_580Device {
 		/**
@@ -27,7 +27,7 @@ public interface BluetoothDeviceCapability {
 		 * 
 		 * @return
 		 */
-		String versionStr() default "1.0.0";
+		String version() default "1.0.0";
 	}
 
 }
