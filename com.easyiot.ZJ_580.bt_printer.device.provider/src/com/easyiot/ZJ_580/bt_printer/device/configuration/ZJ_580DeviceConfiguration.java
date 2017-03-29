@@ -14,5 +14,8 @@ public @interface ZJ_580DeviceConfiguration {
 	
 	@AttributeDefinition(name = "SPP Service Id", description = "Gives the SPP service number for this device.", required = true)
 	String sppServiceNumber() default "";
+	
+	@AttributeDefinition(name = "Bluetooth protocol dependency", description = "Defines the ID of the underlying bluetooth protocol instance. Optional if there is only one bluetooth protocol instance.", required = false)
+	String bluetoothProtocolReference_target();
 
 }

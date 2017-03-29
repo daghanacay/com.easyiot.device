@@ -4,6 +4,8 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 import org.osgi.service.metatype.annotations.Designate;
 
 import com.easyiot.ZJ_580.bt_printer.device.api.capability.BluetoothDeviceCapability.ProvideZJ_580Device;
@@ -21,7 +23,7 @@ import com.easyiot.com.easyiot.ZJ_580.bt_printer.device.api.dto.ZJ_580Data;
 public class ZJ_580DeviceImpl implements Device {
 	private ZJ_580DeviceConfiguration deviceConfiguration;
 
-	@Reference(name = "bluetoothProtocolReference")
+	@Reference(name = "bluetoothProtocolReference", policyOption = ReferencePolicyOption.GREEDY, cardinality = ReferenceCardinality.MANDATORY)
 	BluetoothProtocol bluetoothPotocol;
 
 	@PostMethod

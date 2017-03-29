@@ -28,5 +28,8 @@ public @interface DevelopmentBoard1Configuration {
 	
 	@AttributeDefinition(name = "Device Identifier", description = "Device EUI identified by the manufacturer")
 	public String deviceEUI() default "000DB531176F3557";
-
+	
+	@AttributeDefinition(name = "MQTT Protocol dependency", description = "Defines the ID of the underlying MQTT protocol instance. Optional if there is only one MQTT protocol instance.", required=false)
+	String mqttProtocolReference_target();
+	
 }

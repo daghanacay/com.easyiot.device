@@ -4,6 +4,8 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 import org.osgi.service.metatype.annotations.Designate;
 
 import com.easyiot.base.api.Device;
@@ -28,7 +30,7 @@ import com.easyiot.gpio.protocol.api.PinTypeEnum;
 public class Color3LedDevice implements Device {
 	private Color3LedConfiguration configuration;
 
-	@Reference(name = "gpioProtocolReference")
+	@Reference(name = "gpioProtocolReference", cardinality = ReferenceCardinality.MANDATORY, policyOption = ReferencePolicyOption.GREEDY)
 	GpioProtocol protocol;
 
 	@Activate
@@ -43,9 +45,12 @@ public class Color3LedDevice implements Device {
 	}
 
 	private void setupGpio() {
-		protocol.forceConfigurePin(configuration.bluePin(), PinTypeEnum.digital, InputOutputEnum.output, PinLevelEnum.low);
-		protocol.forceConfigurePin(configuration.greenPin(),PinTypeEnum.digital, InputOutputEnum.output, PinLevelEnum.low);
-		protocol.forceConfigurePin(configuration.redPin(), PinTypeEnum.digital,InputOutputEnum.output, PinLevelEnum.low);
+		protocol.forceConfigurePin(configuration.bluePin(), PinTypeEnum.digital, InputOutputEnum.output,
+				PinLevelEnum.low);
+		protocol.forceConfigurePin(configuration.greenPin(), PinTypeEnum.digital, InputOutputEnum.output,
+				PinLevelEnum.low);
+		protocol.forceConfigurePin(configuration.redPin(), PinTypeEnum.digital, InputOutputEnum.output,
+				PinLevelEnum.low);
 	}
 
 	@GetMethod
