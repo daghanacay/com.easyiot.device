@@ -67,7 +67,7 @@ public class DevelopmentBoard1Impl implements Device, AusloraWebsocketListener {
 	@Activate
 	public void activate(DevelopmentBoard1Configuration conf) {
 		this.deviceConfiguration = conf;
-		if (ttnMqttClient != null) {
+		if (ttnMqttClient != null && conf.mqttProtocolReference_target() != null) {
 			ttnMqttClient.subscribe(deviceConfiguration.subscriptionChannel(), subsMethod);
 		}
 	}

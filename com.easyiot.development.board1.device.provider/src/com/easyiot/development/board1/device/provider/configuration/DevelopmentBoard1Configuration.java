@@ -19,6 +19,8 @@ public @interface DevelopmentBoard1Configuration {
 	@AttributeDefinition(name = "Publish Channel", description = "Device publish channel to write data. Follows mqtt syntax.")
 	public String publishChannel() default "70B3D57ED0000185/devices/0000000001020304/up";
 	
+	@AttributeDefinition(name = "MQTT Protocol dependency", description = "Defines the ID of the underlying MQTT protocol instance. Optional if there is only one MQTT protocol instance.", required=false)
+	String mqttProtocolReference_target();
 	// BELOW IS NEEDED FOR REGISTERING TO AUSLORA 
 	@AttributeDefinition(name = "Application ID", description = "Auslora application id that this device is connected to")
 	public String applicationId() default "BE01000C";
@@ -29,7 +31,7 @@ public @interface DevelopmentBoard1Configuration {
 	@AttributeDefinition(name = "Device Identifier", description = "Device EUI identified by the manufacturer")
 	public String deviceEUI() default "000DB531176F3557";
 	
-	@AttributeDefinition(name = "MQTT Protocol dependency", description = "Defines the ID of the underlying MQTT protocol instance. Optional if there is only one MQTT protocol instance.", required=false)
-	String mqttProtocolReference_target();
+	@AttributeDefinition(name = "Web socket protocl dependency", description = "Defines the ID of the underlying websocket protocol instance. Optional if there is only one WS protocol instance.", required=false)
+	String ausloraServerId();
 	
 }
