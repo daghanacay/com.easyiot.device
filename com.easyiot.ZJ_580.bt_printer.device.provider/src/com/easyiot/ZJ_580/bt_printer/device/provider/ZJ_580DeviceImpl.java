@@ -24,7 +24,7 @@ public class ZJ_580DeviceImpl implements Device {
 	private ZJ_580DeviceConfiguration deviceConfiguration;
 
 	@Reference(name = "bluetoothProtocolReference", policyOption = ReferencePolicyOption.GREEDY, cardinality = ReferenceCardinality.MANDATORY)
-	BluetoothProtocol bluetoothPotocol;
+	private BluetoothProtocol bluetoothPotocol;
 
 	@PostMethod
 	public String sendDataThroughSPP(ZJ_580Data msg) {
