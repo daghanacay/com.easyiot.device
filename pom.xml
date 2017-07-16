@@ -21,6 +21,8 @@
 		<module>com.easyiot.development.board1.device.provider</module>
 		<module>com.easyiot.LT100H.device.api</module>
 		<module>com.easyiot.LT100H.device.provider</module>
+		<module>com.easyiot.gps_rpi.device.api</module>
+		<module>com.easyiot.gps_rpi.device.provider</module>
 		<module>com.easyiot.ZJ_580.bt_printer.device.api</module>
 		<module>com.easyiot.ZJ_580.bt_printer.device.provider</module>
 	</modules>

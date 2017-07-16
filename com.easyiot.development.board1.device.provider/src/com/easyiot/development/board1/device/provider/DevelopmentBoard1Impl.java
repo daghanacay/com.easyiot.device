@@ -61,7 +61,7 @@ public class DevelopmentBoard1Impl implements Device, AusloraWebsocketListener {
 	};
 
 	// Bind mqttClient
-	@Reference(name = "mqttProtocolReference", cardinality = ReferenceCardinality.OPTIONAL, policyOption = ReferencePolicyOption.GREEDY)
+	@Reference(name = "mqttProtocolReference")
 	private TtnMqttProtocol ttnMqttClient;
 
 	@Activate

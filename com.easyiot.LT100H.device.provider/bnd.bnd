@@ -60,6 +60,4 @@ Bundle-License: \
 	https://opensource.org/licenses/Apache-2.0; \
 	link=http://www.apache.org/licenses/LICENSE-2.0; \
 	description="Apache Software License 2.0"
-Export-Package: \
-	com.easyiot.LT100H.device.api.dto,\
-	com.easyiot.auslora.device.api.dto.sensor
+Export-Package: com.easyiot.LT100H.device.api.dto
